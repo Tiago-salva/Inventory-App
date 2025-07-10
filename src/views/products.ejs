@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" href="/public/css/products.css">
+</head>
+<body>
+    <%- include("header") %>
+    <main>
+        <h1>All the products</h1>
+        <ul class="products-container">
+        <% products.forEach((product) => { %>
+            <li><%- include("card", {product: product}) %></li>
+        <% }) %>
+        </ul>
+    </main>
+</body>
+</html>

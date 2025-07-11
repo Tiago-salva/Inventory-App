@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product</title>
+    <link rel="stylesheet" href="/public/css/products.css">
+    <link rel="stylesheet" href="/public/css/header.css">
+</head>
+<body>
+    <%- include("header") %>
+    <main class="product-detail-container">
+        <img src=<%= product.image_url %> alt="product-image">
+        <div class="product-detail-text">
+            <h2><%= product.product_name %></h2>
+            <p>Product category</p>
+            <p>Product brand</p>
+            <p><%= product.product_description %></p>
+            <p><%= product.quantity %></p>
+            <p>$<%= product.price %></p>
+        </div>
+        <div class="buttons-container">
+            <form action="get" method="">
+                <button type="submit">Edit</button>
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

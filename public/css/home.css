@@ -4,25 +4,9 @@
     box-sizing: border-box;
 }
 
-/* Header */
-header {
-    height: 70px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: burlywood;
-    gap: 20px;
-    padding: 5px 20px;
-}
-
-header>nav>ul {
+main {
+    height: calc(100vh - 100px);
     display: flex;
     justify-content: center;
     align-items: center;
-    list-style: none;
-    gap: 20px;
-}
-
-header a {
-    text-decoration: none;
 }

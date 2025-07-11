@@ -5,4 +5,11 @@ async function getAllProducts(req, res) {
   res.render("products", { products: products });
 }
 
-module.exports = getAllProducts;
+async function getProduct(req, res) {
+  const id = req.params.id;
+  const product = await db.getProduct(id);
+  console.log(product);
+  res.render("productDetail", { product: product });
+}
+
+module.exports = { getAllProducts, getProduct };

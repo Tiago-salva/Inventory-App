@@ -11,11 +11,11 @@
         <img src="<%= product.image_url %>" alt="product-image">
         <div class="product-detail-text">
             <h2><%= product.product_name %></h2>
-            <p>Product category</p>
-            <p>Product brand</p>
-            <p><%= product.product_description %></p>
-            <p><%= product.quantity %></p>
-            <p>$<%= product.price %></p>
+            <p><strong>Category: </strong><%= product.type_name %></p>
+            <p><strong>Brand: </strong><%= product.brand_name %></p>
+            <p><strong>Description:</strong> <%= product.product_description %></p>
+            <p><strong>Quantity:</strong> <%= product.quantity %></p>
+            <p><strong>Price:</strong> $<%= product.price %></p>
         </div>
         <div class="buttons-container">
             <form action="get" method="">

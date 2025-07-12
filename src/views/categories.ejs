@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All categories</title>
+    <link rel="stylesheet" href="public/css/header.css">
+    <link rel="stylesheet" href="public/css/products.css">
+</head>
+<body>
+    <%- include("header") %>
+    <h1>All categories</h1>
+    <ul>
+        <% allCategories.forEach((category) => { %>
+            <li>
+                <a href="/categories/<%= category.id %>">
+                    <%= category.type_name %>
+                </a>
+            </li>
+       <% }) %>
+    </ul>
+</body>
+</html>

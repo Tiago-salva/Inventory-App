@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All categories</title>
+    <link rel="stylesheet" href="public/css/header.css">
+    <link rel="stylesheet" href="public/css/products.css">
+</head>
+<body>
+    <%- include("header") %>
+    <h1>All brands</h1>
+    <ul>
+        <% allBrands.forEach((brand)=> { %>
+            <li>
+                <a href="/brands/<%= brand.id %>">
+                    <%= brand.brand_name %>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+
+</html>

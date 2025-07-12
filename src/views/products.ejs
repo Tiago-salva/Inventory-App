@@ -8,11 +8,11 @@
 <body>
     <%- include("header") %>
     <main>
-        <h1>All the products</h1>
+        <h1><%= title %></h1>
         <a href="/products/new">Add a product</a>
         <ul class="products-container">
         <% products.forEach((product) => { %>
-            <a href="products/product/<%= product.id %>" class="product-card">
+            <a href="/products/product/<%= product.id %>" class="product-card">
                 <img src="<%= product.image_url %>" alt="product-picture">
                 <div class="product-card_text">
                     <h5>

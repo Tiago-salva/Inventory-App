@@ -12,8 +12,8 @@ async function getProduct(req, res) {
 }
 
 async function createProductGet(req, res) {
-  const allTypeClothes = await db.getAllTypeClothes();
-  const allBrands = await db.getAllBrands();
+  const allTypeClothes = await db.getAllFrom("type_clothes");
+  const allBrands = await db.getAllFrom("brands");
   res.render("newProduct", {
     allTypeClothes: allTypeClothes,
     allBrands: allBrands,

@@ -1,25 +1,43 @@
 const pool = require("../db/pool");
 
-async function getAllProducts() {
-  const { rows } = await pool.query(`SELECT * FROM products`);
+async function getAllFrom(table) {
+  const { rows } = await pool.query(`SELECT * FROM ${table}`);
+  return rows;
+}
+
+async function getAllProductsBy(filterType, id) {
+  let column, table;
+
+  if (filterType === "type") {
+    column = "type_clothes_id";
+    table = "type_clothes";
+  } else if (filterType === "brand") {
+    column = "brand_id";
+    table = "brands";
+  } else {
+    throw new Error("Invalid filter type");
+  }
+
+  const { rows } = await pool.query(
+    `SELECT products.*, ${filterType}_name
+     FROM products
+     JOIN ${table}
+     ON products.${column} = ${table}.id
+     WHERE ${table}.id = $1`,
+    [id]
+  );
   return rows;
 }
 
 async function getProduct(id) {
-  const { rows } = await pool.query(`SELECT * FROM products WHERE id = $1`, [
-    id,
-  ]);
+  const { rows } = await pool.query(
+    `SELECT products.*, type_clothes.type_name, brands.brand_name FROM products
+    JOIN brands ON products.brand_id = brands.id
+    JOIN type_clothes ON products.type_clothes_id = type_clothes.id
+    WHERE products.id = $1`,
+    [id]
+  );
   return rows[0];
-}
-
-async function getAllTypeClothes() {
-  const { rows } = await pool.query(`SELECT * FROM type_clothes`);
-  return rows;
-}
-
-async function getAllBrands() {
-  const { rows } = await pool.query(`SELECT * FROM brands`);
-  return rows;
 }
 
 async function insertProduct(product) {
@@ -39,9 +57,8 @@ async function insertProduct(product) {
 }
 
 module.exports = {
-  getAllProducts,
+  getAllFrom,
+  getAllProductsBy,
   getProduct,
-  getAllTypeClothes,
-  getAllBrands,
   insertProduct,
 };

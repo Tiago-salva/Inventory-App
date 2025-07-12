@@ -1,8 +1,8 @@
 const db = require("../db/queries");
 
 async function getAllProducts(req, res) {
-  const products = await db.getAllProducts();
-  res.render("products", { products: products });
+  const products = await db.getAllFrom("products");
+  res.render("products", { title: "All the products", products: products });
 }
 
 async function getProduct(req, res) {

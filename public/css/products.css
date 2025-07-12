@@ -44,3 +44,34 @@ main {
 
 .product-detail-text {
 }
+
+/* New product */
+.new-product-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.new-product-container > form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 30%;
+}
+
+.input-container > input,
+.input-container > select {
+    height: 30px;
+}
+
+.new-product-container button {
+    width: 150px;
+    padding: 10px 0;
+    cursor: pointer;
+}

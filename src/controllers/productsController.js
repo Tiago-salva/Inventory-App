@@ -8,8 +8,26 @@ async function getAllProducts(req, res) {
 async function getProduct(req, res) {
   const id = req.params.id;
   const product = await db.getProduct(id);
-  console.log(product);
   res.render("productDetail", { product: product });
 }
 
-module.exports = { getAllProducts, getProduct };
+async function createProductGet(req, res) {
+  const allTypeClothes = await db.getAllTypeClothes();
+  const allBrands = await db.getAllBrands();
+  res.render("newProduct", {
+    allTypeClothes: allTypeClothes,
+    allBrands: allBrands,
+  });
+}
+
+async function createProductPost(req, res) {
+  await db.insertProduct(req.body);
+  res.redirect("/products");
+}
+
+module.exports = {
+  getAllProducts,
+  getProduct,
+  createProductGet,
+  createProductPost,
+};

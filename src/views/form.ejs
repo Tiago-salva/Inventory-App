@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/header.css">
+</head>
+<body>
+    <%- include("header") %>
+    <form action="/<%= action %>/new" method="post">
+        <label for="<%= name %>">
+            <%= name %>
+        </label>
+        <input type="text" name="<%= name %>">
+        <button type="submit">Create <%= name %></button>
+    </form>
+</body>
+</html>

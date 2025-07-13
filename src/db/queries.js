@@ -64,10 +64,18 @@ async function insertProduct(product) {
   );
 }
 
+async function insertIn(table, brand) {
+  const column = table === "brands" ? "brand" : "type";
+  await pool.query(`INSERT INTO ${table} (${column}_name) VALUES ($1)`, [
+    brand,
+  ]);
+}
+
 module.exports = {
   getAllFrom,
   getAllProductsBy,
   getProduct,
   getProductsFromSearch,
   insertProduct,
+  insertIn,
 };

@@ -40,6 +40,14 @@ async function getProduct(id) {
   return rows[0];
 }
 
+async function getProductsFromSearch(query) {
+  const { rows } = await pool.query(
+    `SELECT * FROM products WHERE product_name ILIKE $1`,
+    [`%${query}%`]
+  );
+  return rows;
+}
+
 async function insertProduct(product) {
   await pool.query(
     `INSERT INTO products (type_clothes_id, brand_id, product_name, product_description, price, image_url, quantity)
@@ -60,5 +68,6 @@ module.exports = {
   getAllFrom,
   getAllProductsBy,
   getProduct,
+  getProductsFromSearch,
   insertProduct,
 };

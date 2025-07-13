@@ -20,3 +20,7 @@ header > nav > ul {
 header a {
     text-decoration: none;
 }
+
+.search-container {
+    margin-left: auto;
+}

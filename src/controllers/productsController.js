@@ -11,6 +11,12 @@ async function getProduct(req, res) {
   res.render("productDetail", { product: product });
 }
 
+async function getProductsFromSearch(req, res) {
+  const { query } = req.query;
+  const allProducts = await db.getProductsFromSearch(query);
+  res.render("products", { title: "All the products", products: allProducts });
+}
+
 async function createProductGet(req, res) {
   const allTypeClothes = await db.getAllFrom("type_clothes");
   const allBrands = await db.getAllFrom("brands");
@@ -28,6 +34,7 @@ async function createProductPost(req, res) {
 module.exports = {
   getAllProducts,
   getProduct,
+  getProductsFromSearch,
   createProductGet,
   createProductPost,
 };

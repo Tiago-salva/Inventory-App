@@ -4,6 +4,7 @@ const path = require("path");
 const productsRouter = require("./src/routes/productsRouter");
 const categoriesRouter = require("./src/routes/categoriesRouter");
 const brandsRouter = require("./src/routes/brandsRouter");
+const loadFilters = require("./src/middleware/loadFilters");
 
 app.set("views", path.join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
   res.render("home", { title: "Homepage" });
 });
 
+app.use(loadFilters);
 app.use("/products", productsRouter);
 app.use("/categories", categoriesRouter);
 app.use("/brands", brandsRouter);

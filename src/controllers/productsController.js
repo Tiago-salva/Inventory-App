@@ -2,10 +2,8 @@ const db = require("../db/queries");
 
 async function getAllProducts(req, res) {
   const products = await db.getAllFrom("products");
-  const allCategories = await db.getAllFrom("type_clothes");
   res.render("products", {
     title: "All the products",
-    categories: allCategories,
     products: products,
   });
 }
@@ -19,26 +17,50 @@ async function getProduct(req, res) {
 async function getProductsFromSearch(req, res) {
   const { query } = req.query;
   const allProducts = await db.getProductsFromSearch(query);
-  const allCategories = await db.getAllFrom("type_clothes");
   res.render("products", {
     title: "All the products",
-    categories: allCategories,
     products: allProducts,
   });
 }
 
-async function getFilterProducts(req, res) {
+async function getFilteredProducts(req, res) {
   const selectedTypes = req.query.types;
+  const selectedBrands = req.query.brands;
+
   const types = Array.isArray(selectedTypes)
     ? selectedTypes.map(Number)
     : [Number(selectedTypes)];
-  const allProducts = await db.getFilterProducts(types);
-  const allCategories = await db.getAllFrom("type_clothes");
-  res.render("products", {
-    title: "All products",
-    categories: allCategories,
-    products: allProducts,
-  });
+
+  const brands = Array.isArray(selectedBrands)
+    ? selectedBrands.map(Number)
+    : [Number(selectedBrands)];
+
+  const filters = [
+    { id: types, columnName: "type_clothes" },
+    { id: brands, columnName: "brand" },
+  ];
+  console.log(filters[0].id.values());
+
+  const columns = filters.filter(
+    (f) => Number.isInteger(f.id[0]) && f.id.length > 0
+  );
+  console.log(columns);
+
+  try {
+    const allProducts = await db.getFilteredProducts(columns);
+
+    if (allProducts.length === 0) {
+      return res.send("No products match your filters.");
+    }
+
+    res.render("products", {
+      title: "All Products",
+      products: allProducts,
+    });
+  } catch (err) {
+    console.error("Error fetching filtered products:", err);
+    res.status(500).send("Internal Server Error");
+  }
 }
 
 async function createProductGet(req, res) {
@@ -59,7 +81,7 @@ module.exports = {
   getAllProducts,
   getProduct,
   getProductsFromSearch,
-  getFilterProducts,
+  getFilteredProducts,
   createProductGet,
   createProductPost,
 };

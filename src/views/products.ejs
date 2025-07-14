@@ -10,20 +10,35 @@
     <main>
         <h1><%= title %></h1>
         <a href="/products/new">Add a product</a>
-        <ul class="products-container">
-        <% products.forEach((product) => { %>
-            <a href="/products/product/<%= product.id %>" class="product-card">
-                <img src="<%= product.image_url %>" alt="product-picture">
-                <div class="product-card_text">
-                    <h5>
-                        <%= product.product_name %>
-                    </h5>
-                    <p>$<%= product.price %>
-                    </p>
-                </div>
-            </a>
-        <% }) %>
-        </ul>
+        <div class="products-container">
+            <form action="/products/filter" method="get" class="filter-container">
+                <% categories.forEach((category)=> { %>
+                    <label for="<%= category.type_name %>">
+                        <input type="checkbox" name="types" id="<%= category.type_name %>"
+                        value="<%= category.id %>">
+                        <%= category.type_name %>
+                    </label>
+                <% }) %>
+                <button type="submit">Apply filters</button>
+            </form>
+            <ul class="products">
+                <% products.forEach((product)=> { %>
+                    <li>
+
+                        <a href="/products/product/<%= product.id %>" class="product-card">
+                            <img src="<%= product.image_url %>" alt="product-picture">
+                            <div class="product-card_text">
+                                <h5>
+                                    <%= product.product_name %>
+                                </h5>
+                                <p>$<%= product.price %>
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
     </main>
 </body>
 </html>

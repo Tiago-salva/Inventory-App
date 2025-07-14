@@ -9,8 +9,10 @@ async function getAllProductsByType(req, res) {
   const id = parseInt(req.params.id);
   const allProducts = await db.getAllProductsBy("type", id);
   if (allProducts.length < 1) return res.send("There are no products");
+  const allCategories = await db.getAllFrom("type_clothes");
   res.render("products", {
     title: `All the ${allProducts[0].type_name}`,
+    categories: allCategories,
     products: allProducts,
   });
 }

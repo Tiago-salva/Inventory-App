@@ -71,6 +71,14 @@ async function insertIn(table, brand) {
   ]);
 }
 
+async function getFilterProducts(types) {
+  const { rows } = await pool.query(
+    `SELECT * FROM products WHERE type_clothes_id = ANY($1::int[])`,
+    [types]
+  );
+  return rows;
+}
+
 module.exports = {
   getAllFrom,
   getAllProductsBy,
@@ -78,4 +86,5 @@ module.exports = {
   getProductsFromSearch,
   insertProduct,
   insertIn,
+  getFilterProducts,
 };

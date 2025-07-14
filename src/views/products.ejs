@@ -12,6 +12,7 @@
         <a href="/products/new">Add a product</a>
         <div class="products-container">
             <form action="/products/filter" method="get" class="filter-container">
+                <p><strong>Categories</strong></p>
                 <% categories.forEach((category)=> { %>
                     <label for="<%= category.type_name %>">
                         <input type="checkbox" name="types" id="<%= category.type_name %>"
@@ -19,6 +20,17 @@
                         <%= category.type_name %>
                     </label>
                 <% }) %>
+
+                <br>
+
+                <p><strong>Brands</strong></p>
+                <% brands.forEach((brand)=> { %>
+                    <label for="<%= brand.brand_name %>">
+                        <input type="checkbox" name="brands" id="<%= brand.brand_name %>" value="<%= brand.id %>">
+                        <%= brand.brand_name %>
+                    </label>
+                    <% }) %>
+
                 <button type="submit">Apply filters</button>
             </form>
             <ul class="products">

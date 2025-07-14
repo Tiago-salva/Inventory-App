@@ -5,7 +5,7 @@ const {
   createProductGet,
   createProductPost,
   getProductsFromSearch,
-  getFilterProducts,
+  getFilteredProducts,
 } = require("../controllers/productsController");
 
 const productsRouter = Router();
@@ -15,6 +15,6 @@ productsRouter.get("/product/:id", getProduct);
 productsRouter.get("/new", createProductGet);
 productsRouter.post("/new", createProductPost);
 productsRouter.get("/search", getProductsFromSearch);
-productsRouter.get("/filter", getFilterProducts);
+productsRouter.get("/filter", getFilteredProducts);
 
 module.exports = productsRouter;

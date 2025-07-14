@@ -2,7 +2,12 @@ const db = require("../db/queries");
 
 async function getAllProducts(req, res) {
   const products = await db.getAllFrom("products");
-  res.render("products", { title: "All the products", products: products });
+  const allCategories = await db.getAllFrom("type_clothes");
+  res.render("products", {
+    title: "All the products",
+    categories: allCategories,
+    products: products,
+  });
 }
 
 async function getProduct(req, res) {
@@ -14,7 +19,26 @@ async function getProduct(req, res) {
 async function getProductsFromSearch(req, res) {
   const { query } = req.query;
   const allProducts = await db.getProductsFromSearch(query);
-  res.render("products", { title: "All the products", products: allProducts });
+  const allCategories = await db.getAllFrom("type_clothes");
+  res.render("products", {
+    title: "All the products",
+    categories: allCategories,
+    products: allProducts,
+  });
+}
+
+async function getFilterProducts(req, res) {
+  const selectedTypes = req.query.types;
+  const types = Array.isArray(selectedTypes)
+    ? selectedTypes.map(Number)
+    : [Number(selectedTypes)];
+  const allProducts = await db.getFilterProducts(types);
+  const allCategories = await db.getAllFrom("type_clothes");
+  res.render("products", {
+    title: "All products",
+    categories: allCategories,
+    products: allProducts,
+  });
 }
 
 async function createProductGet(req, res) {
@@ -35,6 +59,7 @@ module.exports = {
   getAllProducts,
   getProduct,
   getProductsFromSearch,
+  getFilterProducts,
   createProductGet,
   createProductPost,
 };

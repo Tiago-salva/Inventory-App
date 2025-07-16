@@ -18,7 +18,7 @@
             <p><strong>Price:</strong> $<%= product.price %></p>
         </div>
         <div class="buttons-container">
-            <form action="get" method="">
+            <form action="/products/product/edit/<%= product.id %>" method="get">
                 <button type="submit">Edit</button>
                 <button type="submit">Delete</button>
             </form>

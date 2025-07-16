@@ -26,6 +26,7 @@ async function getProductsFromSearch(req, res) {
 async function getFilteredProducts(req, res) {
   const selectedTypes = req.query.types;
   const selectedBrands = req.query.brands;
+  let allProducts = [];
 
   const types = Array.isArray(selectedTypes)
     ? selectedTypes.map(Number)
@@ -39,15 +40,18 @@ async function getFilteredProducts(req, res) {
     { id: types, columnName: "type_clothes" },
     { id: brands, columnName: "brand" },
   ];
-  console.log(filters[0].id.values());
 
   const columns = filters.filter(
     (f) => Number.isInteger(f.id[0]) && f.id.length > 0
   );
-  console.log(columns);
 
   try {
-    const allProducts = await db.getFilteredProducts(columns);
+    if (req.query.order) {
+      const selectedOrder = req.query.order === "desc" ? "DESC" : "ASC";
+      allProducts = await db.getFilteredProducts(columns, selectedOrder);
+    } else {
+      allProducts = await db.getFilteredProducts(columns);
+    }
 
     if (allProducts.length === 0) {
       return res.send("No products match your filters.");

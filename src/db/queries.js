@@ -71,24 +71,31 @@ async function insertIn(table, brand) {
   ]);
 }
 
-async function getFilteredProducts(columns) {
+async function getFilteredProducts(columns, order) {
   if (columns.length > 1) {
     const { rows } = await pool.query(
       `
       SELECT * FROM products
       WHERE type_clothes_id = ANY($1::int[])
       AND brand_id = ANY($2::int[])
+      ORDER BY price $3
     `,
-      [columns[0].id, columns[1].id]
+      [columns[0].id, columns[1].id, order]
     );
     return rows;
-  } else {
+  } else if (columns.length === 1) {
     const { rows } = await pool.query(
       `
       SELECT * FROM products
       WHERE ${columns[0].columnName}_id = ANY($1::int[])
+      ORDER BY price ${order}
     `,
       [columns[0].id]
+    );
+    return rows;
+  } else {
+    const { rows } = await pool.query(
+      `SELECT * FROM products ORDER BY price ${order}`
     );
     return rows;
   }

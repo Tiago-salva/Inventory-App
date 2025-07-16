@@ -69,14 +69,16 @@ main {
     width: 50%;
 }
 
-/* New product */
-.new-product-container {
+/* New product and Edit product */
+.new-product-container,
+.edit-product-container {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.new-product-container > form {
+.new-product-container > form,
+.edit-product-container > form{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -94,7 +96,8 @@ main {
     height: 30px;
 }
 
-.new-product-container button {
+.new-product-container button,
+.edit-product-container button {
     width: 150px;
     padding: 10px 0;
     cursor: pointer;

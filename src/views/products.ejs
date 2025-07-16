@@ -12,6 +12,16 @@
         <a href="/products/new">Add a product</a>
         <div class="products-container">
             <form action="/products/filter" method="get" class="filter-container">
+                <p><strong>Order by price</strong></p>
+                <label for="order-asc">
+                    <input type="radio" name="order" id="order-asc" value="asc">Ascending</input>
+                </label>
+                <label for="order-desc">
+                    <input type="radio" name="order" id="order-desc" value="desc">Descending</input>
+                </label>
+
+                <br>
+
                 <p><strong>Categories</strong></p>
                 <% categories.forEach((category)=> { %>
                     <label for="<%= category.type_name %>">

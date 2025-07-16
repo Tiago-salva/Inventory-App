@@ -3,20 +3,22 @@
 <head>
     <title>All categories</title>
     <link rel="stylesheet" href="public/css/header.css">
-    <link rel="stylesheet" href="public/css/products.css">
+    <link rel="stylesheet" href="public/css/types.css">
 </head>
 <body>
     <%- include("header") %>
-    <h1>All categories</h1>
-    <a href="/categories/new">Add a category</a>
-    <ul>
-        <% allCategories.forEach((category) => { %>
-            <li>
-                <a href="/categories/<%= category.id %>">
-                    <%= category.type_name %>
-                </a>
-            </li>
-       <% }) %>
-    </ul>
+    <main>
+        <h1>All categories</h1>
+        <a href="/categories/new">Add a category</a>
+        <ul>
+            <% allCategories.forEach((category) => { %>
+                <li>
+                    <a href="/categories/<%= category.id %>">
+                        <%= category.type_name %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    </main>
 </body>
 </html>

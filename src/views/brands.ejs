@@ -3,21 +3,24 @@
 <head>
     <title>All categories</title>
     <link rel="stylesheet" href="public/css/header.css">
-    <link rel="stylesheet" href="public/css/products.css">
+    <link rel="stylesheet" href="public/css/types.css">
 </head>
 <body>
     <%- include("header") %>
-    <h1>All brands</h1>
-    <a href="/brands/new">Add a brand</a>
-    <ul>
-        <% allBrands.forEach((brand)=> { %>
-            <li>
-                <a href="/brands/<%= brand.id %>">
-                    <%= brand.brand_name %>
-                </a>
-            </li>
-        <% }) %>
-    </ul>
+    <main>
+
+        <h1>All brands</h1>
+        <a href="/brands/new">Add a brand</a>
+        <ul>
+            <% allBrands.forEach((brand)=> { %>
+                <li>
+                    <a href="/brands/<%= brand.id %>">
+                        <%= brand.brand_name %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    </main>
 </body>
 
 </html>

@@ -94,6 +94,30 @@ async function getFilteredProducts(columns) {
   }
 }
 
+async function updateProduct(product, id) {
+  await pool.query(
+    `UPDATE products
+    SET type_clothes_id = $1,
+    brand_id = $2,
+    product_name = $3,
+    product_description = $4,
+    price = $5,
+    image_url = $6,
+    quantity = $7
+    WHERE id = $8`,
+    [
+      parseInt(product.typeClothes),
+      parseInt(product.brand),
+      product.productName,
+      product.description,
+      product.price,
+      product.imgUrl,
+      product.quantity,
+      id,
+    ]
+  );
+}
+
 module.exports = {
   getAllFrom,
   getAllProductsBy,
@@ -102,4 +126,5 @@ module.exports = {
   insertProduct,
   insertIn,
   getFilteredProducts,
+  updateProduct,
 };

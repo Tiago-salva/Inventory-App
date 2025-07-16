@@ -24,3 +24,19 @@ header a {
 .search-container {
     margin-left: auto;
 }
+
+.search-container > form {
+    display: flex;
+    gap: 20px;
+}
+
+.search-container > form > input {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.search-container > form > button {
+    cursor: pointer;
+    width: 70px;
+    border: none;
+}

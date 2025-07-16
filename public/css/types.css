@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 5px;
+    gap: 30px;
+}
+
+main h1 {
+    font-size: 3rem;
+}
+
+main > a {
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+main > ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 20px;
+}
+
+main > ul > li > a {
+    background-color: aqua;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1.3rem;
+}

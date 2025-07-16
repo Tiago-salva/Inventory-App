@@ -43,11 +43,10 @@ main {
 .products > li {
     max-width: 300px;
     width: 100%;
-
 }
 
 .product-card {
-    background-color: cadetblue;
+    background-color: rgb(139, 108, 67);
     display: flex;
     flex-direction: column;
     border-radius: 5px;
@@ -56,7 +55,17 @@ main {
 }
 
 .product-card > img {
-    border-radius: 5px 5px 0 0;
+    height: 250px;
+    object-fit: contain;
+}
+
+.product-card > img::after {
+    opacity: 0.03;
+}
+
+.product-card_text {
+    background-color: cadetblue;
+    
 }
 
 /* Product Detail */

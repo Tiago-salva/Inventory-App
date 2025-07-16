@@ -8,7 +8,7 @@
 <body>
     <%- include("header") %>
     <main class="new-product-container">
-        <h1>New product</h1>
+        <h1><%= title %></h1>
         <form action="/products/new" method="post">
             <div class="input-container">
                 <label for="productName">Name</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="input-container">
                 <label for="price">Price</label>
-                <input type="text" name="price" id="price" required>
+                <input type="number" name="price" id="price" required>
             </div>
             <div class="input-container">
                 <label for="imgUrl">Image (URL)</label>
@@ -28,12 +28,12 @@
             </div>
             <div class="input-container">
                 <label for="quantity">Quantity</label>
-                <input type="text" name="quantity" id="quantity" required>
+                <input type="number" name="quantity" id="quantity" required>
             </div>
             <div class="input-container">
                 <label for="typeClothes">Type</label>
                 <select name="typeClothes" id="typeClothes" required>
-                    <% allTypeClothes.forEach((type)=> { %>
+                    <% categories.forEach((type)=> { %>
                         <option value="<%= type.id %>">
                             <%= type.type_name %>
                         </option>
@@ -43,7 +43,7 @@
             <div class="input-container">
                 <label for="brand">Brand</label>
                 <select name="brand" id="brand" required>
-                    <% allBrands.forEach((type) => { %>
+                    <% brands.forEach((type) => { %>
                         <option value="<%= type.id %>"><%= type.brand_name %></option>
                    <% }) %>
                 </select>

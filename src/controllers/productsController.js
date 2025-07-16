@@ -64,16 +64,25 @@ async function getFilteredProducts(req, res) {
 }
 
 async function createProductGet(req, res) {
-  const allTypeClothes = await db.getAllFrom("type_clothes");
-  const allBrands = await db.getAllFrom("brands");
   res.render("newProduct", {
-    allTypeClothes: allTypeClothes,
-    allBrands: allBrands,
+    title: "New product",
   });
 }
 
 async function createProductPost(req, res) {
   await db.insertProduct(req.body);
+  res.redirect("/products");
+}
+
+async function editProductGet(req, res) {
+  const id = parseInt(req.params.id);
+  const product = await db.getProduct(id);
+  res.render("editProduct", { title: "Edit product", product: product });
+}
+
+async function editProductPost(req, res) {
+  const id = parseInt(req.params.id);
+  await db.updateProduct(req.body, id);
   res.redirect("/products");
 }
 
@@ -84,4 +93,6 @@ module.exports = {
   getFilteredProducts,
   createProductGet,
   createProductPost,
+  editProductGet,
+  editProductPost,
 };

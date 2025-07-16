@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New product</title>
+    <link rel="stylesheet" href="/public/css/products.css">
+    <link rel="stylesheet" href="/public/css/header.css">
+</head>
+
+<body>
+    <%- include("header") %>
+        <main class="edit-product-container">
+            <h1>
+                <%= title %>
+            </h1>
+            <form action="/products/product/edit/<%= product.id %>" method="post">
+                <div class="input-container">
+                    <label for="productName">Name</label>
+                    <input type="text" name="productName" id="productName" value="<%= product.product_name %>" required>
+                </div>
+                <div class="input-container">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" value="<%= product.product_description %>" required>
+                </div>
+                <div class="input-container">
+                    <label for="price">Price</label>
+                    <input type="number" name="price" id="price" value="<%= product.price %>" required>
+                </div>
+                <div class="input-container">
+                    <label for="imgUrl">Image (URL)</label>
+                    <input type="text" name="imgUrl" id="imgUrl" value="<%= product.image_url %>" required>
+                </div>
+                <div class="input-container">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" name="quantity" id="quantity" value="<%= product.quantity %>" required>
+                </div>
+                <div class="input-container">
+                    <label for="typeClothes">Type</label>
+                    <select name="typeClothes" id="typeClothes" required>
+                        <% categories.forEach((type)=> { %>
+                            <option value="<%= type.id %>"
+                                <%= product.type_clothes_id === type.id ? "selected" : "" %>>
+                                <%= type.type_name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="input-container">
+                    <label for="brand">Brand</label>
+                    <select name="brand" id="brand" required>
+                        <% brands.forEach((type)=> { %>
+                            <option value="<%= type.id %>"
+                            <%= product.brand_id === type.id ? "selected" : "" %>>
+                                <%= type.brand_name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+                <button type="submit">Create product</button>
+            </form>
+        </main>
+
+</body>
+
+</html>
